@@ -43,14 +43,18 @@ public class Polynomial {
 					pos++;
 				}
 				else if (s[i] == 'x') {
-					c[pos] = Double.parseDouble(num);
+					if (num.equals("")) c[pos] = 1.0;
+					else c[pos] = Double.parseDouble(num);
 					num = "";
 					deg = true;
 				}
 				else num += s[i];
 			}
-			if (deg && num != "") d[size] = Integer.parseInt(num);
-			else if (num != "") c[size] = Double.parseDouble(num);
+			if (deg) {
+				if (!num.equals("")) d[size] = Integer.parseInt(num);
+				else d[size] = 1;
+			}
+			else if (!num.equals("")) c[size] = Double.parseDouble(num);
 			
 			if (s.length == 0) {
 				this.coefficients = null;
@@ -206,6 +210,8 @@ public class Polynomial {
 	}
 	
 	public double evaluate(double x) {
+		if (this.coefficients == null) return 0;
+		
 		double ans = 0;
 		for (int i = 0; i < this.coefficients.length; i++) {
 			ans += this.coefficients[i] * Math.pow(x, this.degrees[i]);

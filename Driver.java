@@ -5,7 +5,6 @@ public class Driver {
 		
 		File f = new File("poly.txt");
 		Polynomial k = new Polynomial(f);
-		System.out.println(k.evaluate(3));
 		for (int i = 0; i < k.coefficients.length; i++) {
 			System.out.println(k.coefficients[i] + " " + k.degrees[i]);
 		}
